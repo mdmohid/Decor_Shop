@@ -55,7 +55,13 @@
 
         <br />
 
-        <button class="button">Add to Cart</button>
+        {% comment %} <button class="button">Add to Cart</button> {% endcomment %}
+
+        <form method="POST" action="{% url 'add_to_cart' product.slug %}">
+          {% csrf_token %}
+
+          <button type="submit" class="button">Add to Cart</button>
+        </form>
 
         {% else %}
 

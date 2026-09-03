@@ -13,5 +13,23 @@ urlpatterns = [
       views.product_detail,
       name='product_detail'
   ),
+  path(
+      'cart/add/<slug:slug>/',
+      views.add_to_cart,
+      name='add_to_cart'
+  ),
+  
+  path(
+      'cart/',
+      views.cart,
+      name='cart'
+  ),
+  path('checkout/', views.checkout, name='checkout'),
+  
+  path(
+      'order-success/<str:order_number>/',
+      views.order_success,
+      name='order_success'
+  ),
 
 ]

@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block title %} Order Confirmed | Decor Shop 
+{% endblock %} {% block content %}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Order Confirmed!</h1>
+
+    <p>Thank you for your order.</p>
+
+    <br />
+
+    <div class="box">
+      <p>
+        <strong>Order Number:</strong>
+        {{ order.order_number }}
+      </p>
+
+      <p>
+        <strong>Status:</strong>
+        {{ order.status }}
+      </p>
+
+      <p>
+        <strong>Phone:</strong>
+        {{ order.phone }}
+      </p>
+
+      <p>
+        <strong>Shipping Address:</strong>
+        {{ order.shipping_address }}
+      </p>
+
+      <p>
+        <strong>Total:</strong>
+        Rs. {{ order.total_amount }}
+      </p>
+    </div>
+
+    <h2 class="title is-4">Ordered Products</h2>
+
+    {% for item in order.items.all %}
+
+    <div class="box">
+      <p>
+        <strong> {{ item.product.name }} </strong>
+      </p>
+
+      <p>Quantity: {{ item.quantity }}</p>
+
+      <p>Price: Rs. {{ item.price }}</p>
+
+      <p>Subtotal: Rs. {{ item.subtotal }}</p>
+    </div>
+
+    {% endfor %}
+
+    <br />
+
+    <a href="{% url 'products' %}"> Continue Shopping </a>
+  </div>
+</section>
+
+{% endblock %}

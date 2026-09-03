@@ -1,13 +1,45 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from .models import Product
 
 # Create your views here.
 #home
 def home(request):
   return render(request,'index.html')
+
+#products
+# def products(request):
+#     return render(request, 'products.html')
+
+# def products(request):
+#     products = Product.objects.all()
+
+#     return render(request, 'products.html', {
+#         'products': products
+#     })
+
+def products(request):
+    products = Product.objects.filter(is_available=True)
+
+    return render(request, 'products.html', {
+        'products': products
+    })
+
+#product detail
+def product_detail(request, slug):
+    product = get_object_or_404(
+        Product,
+        slug=slug,
+        is_available=True
+    )
+
+    return render(request, 'product_detail.html', {
+        'product': product
+    })
+
 
 #register
 def register(request):

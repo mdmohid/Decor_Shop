@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block title %} Products | Decor Shop {% endblock %}
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Our Products</h1>
+
+    <div class="columns is-multiline">
+      {% for product in products %}
+
+      <div class="column is-one-quarter">
+        <div class="card">
+          <!-- {% if product.image %}
+          <div class="card-image">
+            <figure class="image">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+            </figure>
+          </div>
+          {% endif %} -->
+          {% if product.image %}
+          <div class="card-image">
+            <a href="{% url 'product_detail' product.slug %}">
+              <figure class="image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+              </figure>
+            </a>
+          </div>
+          {% endif %}
+
+          <div class="card-content">
+            <!-- <p class="title is-5">{{ product.name }}</p> -->
+            <a href="{% url 'product_detail' product.slug %}">
+              <p class="title is-5">{{ product.name }}</p>
+            </a>
+
+            <p>Category: {{ product.category.name }}</p>
+
+            <p>{{ product.description|truncatewords:15 }}</p>
+
+            <p>
+              Price:
+              <strong>Rs. {{ product.price }}</strong>
+            </p>
+
+            <p>Stock: {{ product.stock }}</p>
+
+            {% if product.stock > 0 %}
+            <p>Available</p>
+            {% else %}
+            <p>Out of Stock</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% empty %}
+
+      <div class="column">
+        <p>No products available.</p>
+      </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

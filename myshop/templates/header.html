@@ -1,4 +1,4 @@
-<nav class="navbar is-light">
+<!-- <nav class="navbar is-light">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item" href="{% url 'home' %}">
@@ -21,6 +21,44 @@
         <a class="navbar-item" href="{% url 'login' %}"> Login </a>
 
         <a class="navbar-item" href="{% url 'register' %}"> Register </a>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar is-light">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'home' %}">
+        <strong>Decor Shop</strong>
+      </a>
+    </div>
+
+    <div class="navbar-menu is-active">
+      <div class="navbar-start">
+        <a class="navbar-item" href="{% url 'home' %}"> Home </a>
+
+        <a class="navbar-item" href="{% url 'products'%}"> Products </a>
+
+        <a class="navbar-item" href="#"> Categories </a>
+
+        <a class="navbar-item" href="#"> Cart </a>
+      </div>
+
+      <div class="navbar-end">
+        {% if user.is_authenticated %}
+
+        <div class="navbar-item">{{ user.username }}</div>
+
+        <a class="navbar-item" href="{% url 'logout' %}"> Logout </a>
+
+        {% else %}
+
+        <a class="navbar-item" href="{% url 'login' %}"> Login </a>
+
+        <a class="navbar-item" href="{% url 'register' %}"> Register </a>
+
+        {% endif %}
       </div>
     </div>
   </div>

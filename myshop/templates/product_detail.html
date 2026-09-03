@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block title %} {{ product.name }} | Decor Shop 
+{% endblock %} {% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <!-- Product Image -->
+      <div class="column is-half">
+        {% if product.image %}
+
+        <figure class="image">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+        </figure>
+
+        {% else %}
+
+        <p>No image available.</p>
+
+        {% endif %}
+      </div>
+
+      <!-- Product Information -->
+      <div class="column is-half">
+        <h1 class="title">{{ product.name }}</h1>
+
+        <p>Category: {{ product.category.name }}</p>
+
+        <br />
+
+        <p>
+          <strong>Price:</strong>
+          Rs. {{ product.price }}
+        </p>
+
+        <br />
+
+        <p>
+          <strong>Description:</strong>
+        </p>
+
+        <p>{{ product.description }}</p>
+
+        <br />
+
+        <p>
+          <strong>Stock:</strong>
+          {{ product.stock }}
+        </p>
+
+        <br />
+
+        {% if product.stock > 0 %}
+
+        <p>Available</p>
+
+        <br />
+
+        <button class="button">Add to Cart</button>
+
+        {% else %}
+
+        <p>Out of Stock</p>
+
+        {% endif %}
+
+        <br /><br />
+
+        <a href="{% url 'products' %}"> ← Back to Products </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

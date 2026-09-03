@@ -46,9 +46,12 @@
       </div>
 
       <div class="navbar-end">
-        {% if user.is_authenticated %}
-
+        {% if user.is_authenticated %} {% comment %}
         <div class="navbar-item">{{ user.username }}</div>
+        {% endcomment %}
+        <a class="navbar-item" href="{% url 'profile' %}">
+          {{ user.username }}
+        </a>
 
         <a class="navbar-item" href="{% url 'logout' %}"> Logout </a>
 

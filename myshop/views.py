@@ -93,7 +93,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('profile')  #instead of home (i.e home)
 
         messages.error(request, 'Invalid username or password.')
         return redirect('login')
@@ -105,6 +105,19 @@ def logout_view(request):
 
     logout(request)
     return redirect('home')
+  
+  
+#profile
+@login_required
+def profile(request):
+
+    orders = Order.objects.filter(
+        user=request.user
+    ).order_by('-created_at')
+
+    return render(request, 'profile.html', {
+        'orders': orders
+    })
 
 
 #add to cart

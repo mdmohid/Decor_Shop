@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Product
+from .models import Product, Category
 from uuid import uuid4
 from .models import  Cart, CartItem, Order, OrderItem
 
@@ -24,11 +24,26 @@ def home(request):
 #         'products': products
 #     })
 
+# def products(request):
+#     products = Product.objects.filter(is_available=True)
+
+#     return render(request, 'products.html', {
+#         'products': products
+#     })
+
+
 def products(request):
     products = Product.objects.filter(is_available=True)
+    categories = Category.objects.all()
+
+    category_slug = request.GET.get('category')
+
+    if category_slug:
+        products = products.filter(category__slug=category_slug)
 
     return render(request, 'products.html', {
-        'products': products
+        'products': products,
+        'categories': categories
     })
 
 #product detail
@@ -91,9 +106,18 @@ def login_view(request):
             password=password
         )
 
+        # if user is not None:
+        #     login(request, user)
+        #     return redirect('profile')  #instead of home (i.e home)
         if user is not None:
             login(request, user)
-            return redirect('profile')  #instead of home (i.e home)
+        
+            next_url = request.GET.get('next')
+        
+            if next_url:
+                return redirect(next_url)
+        
+            return redirect('profile')
 
         messages.error(request, 'Invalid username or password.')
         return redirect('login')

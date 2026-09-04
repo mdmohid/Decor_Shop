@@ -40,7 +40,25 @@
 
         <a class="navbar-item" href="{% url 'products'%}"> Products </a>
 
-        <a class="navbar-item" href="#"> Categories </a>
+        {% comment %} <a class="navbar-item" href="#"> Categories </a> {% endcomment %}
+        <div class="navbar-item has-dropdown is-hoverable">
+        
+            <a class="navbar-link">
+                Categories
+            </a>
+        
+            <div class="navbar-dropdown">
+        
+                {% for category in categories %}
+                    <a class="navbar-item"
+                       href="{% url 'products' %}?category={{ category.slug }}">
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
+        
+            </div>
+        
+        </div>
 
         <a class="navbar-item" href="{% url 'cart' %}"> Cart </a>
       </div>

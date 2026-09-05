@@ -1,31 +1,4 @@
-<!-- <nav class="navbar is-light">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{% url 'home' %}">
-        <strong>Decor Shop</strong>
-      </a>
-    </div>
-
-    <div class="navbar-menu is-active">
-      <div class="navbar-start">
-        <a class="navbar-item" href="{% url 'home' %}"> Home </a>
-
-        <a class="navbar-item" href="#"> Products </a>
-
-        <a class="navbar-item" href="#"> Categories </a>
-      </div>
-
-      <div class="navbar-end">
-        <a class="navbar-item" href="#"> Cart </a>
-
-        <a class="navbar-item" href="{% url 'login' %}"> Login </a>
-
-        <a class="navbar-item" href="{% url 'register' %}"> Register </a>
-      </div>
-    </div>
-  </div>
-</nav> -->
-
+{% comment %}
 <nav class="navbar is-light">
   <div class="container">
     <div class="navbar-brand">
@@ -40,33 +13,26 @@
 
         <a class="navbar-item" href="{% url 'products'%}"> Products </a>
 
-        {% comment %} <a class="navbar-item" href="#"> Categories </a> {% endcomment %}
         <div class="navbar-item has-dropdown is-hoverable">
-        
-            <a class="navbar-link">
-                Categories
+          <a class="navbar-link"> Categories </a>
+
+          <div class="navbar-dropdown">
+            {% for category in categories %}
+            <a
+              class="navbar-item"
+              href="{% url 'products' %}?category={{ category.slug }}"
+            >
+              {{ category.name }}
             </a>
-        
-            <div class="navbar-dropdown">
-        
-                {% for category in categories %}
-                    <a class="navbar-item"
-                       href="{% url 'products' %}?category={{ category.slug }}">
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
-        
-            </div>
-        
+            {% endfor %}
+          </div>
         </div>
 
         <a class="navbar-item" href="{% url 'cart' %}"> Cart </a>
       </div>
 
       <div class="navbar-end">
-        {% if user.is_authenticated %} {% comment %}
-        <div class="navbar-item">{{ user.username }}</div>
-        {% endcomment %}
+        {% if user.is_authenticated %}
         <a class="navbar-item" href="{% url 'profile' %}">
           {{ user.username }}
         </a>
@@ -84,3 +50,159 @@
     </div>
   </div>
 </nav>
+{% endcomment %}
+
+<nav class="navbar decor-navbar" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <!-- Logo + Mobile Burger -->
+    <div class="navbar-brand">
+      <a class="navbar-item decor-logo" href="{% url 'home' %}">
+        <span class="logo-mark">D</span>
+        <span>
+          <strong>Decor</strong>
+          <small>SHOP</small>
+        </span>
+      </a>
+
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="decorNavbar"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <!-- Navbar Menu -->
+    <div id="decorNavbar" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="{% url 'home' %}"> Home </a>
+
+        <a class="navbar-item" href="{% url 'products' %}"> Products </a>
+
+        <!-- Categories -->
+        {% comment %}
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> Categories </a>
+
+          <div class="navbar-dropdown">
+            {% for category in categories %}
+
+            <a
+              class="navbar-item"
+              href="{% url 'products' %}?category={{ category.slug }}"
+            >
+              {{ category.name }}
+            </a>
+
+            {% empty %}
+
+            <span class="navbar-item"> No categories available </span>
+
+            {% endfor %}
+          </div>
+        </div>
+        {% endcomment %}
+        <div class="navbar-item has-dropdown is-hoverable mobile-category">
+          <a class="navbar-link category-toggle"> Categories </a>
+
+          <div class="navbar-dropdown">
+            {% for category in categories %}
+            <a
+              class="navbar-item"
+              href="{% url 'products' %}?category={{ category.slug }}"
+            >
+              {{ category.name }}
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <a class="navbar-item cart-link" href="{% url 'cart' %}">
+          <span class="cart-icon">🛒</span>
+          <span>Cart</span>
+        </a>
+      </div>
+
+      <!-- Right Side -->
+      <div class="navbar-end">
+        {% if user.is_authenticated %}
+
+        <a class="navbar-item profile-link" href="{% url 'profile' %}">
+          <span class="profile-icon">👤</span>
+          <span>{{ user.username }}</span>
+        </a>
+
+        <a class="navbar-item logout-link" href="{% url 'logout' %}">
+          Logout
+        </a>
+
+        {% else %}
+
+        <a class="navbar-item login-link" href="{% url 'login' %}"> Login </a>
+
+        <a class="navbar-item register-button" href="{% url 'register' %}">
+          Register
+        </a>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navbar Script -->
+{% comment %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgers = Array.prototype.slice.call(
+      document.querySelectorAll(".navbar-burger"),
+      0,
+    );
+
+    burgers.forEach((el) => {
+      el.addEventListener("click", () => {
+        const target = el.dataset.target;
+        const targetElement = document.getElementById(target);
+
+        el.classList.toggle("is-active");
+        targetElement.classList.toggle("is-active");
+      });
+    });
+  });
+</script>
+{% endcomment %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    /* Mobile hamburger */
+    const burger = document.querySelector(".navbar-burger");
+    const menu = document.getElementById("decorNavbar");
+
+    if (burger && menu) {
+      burger.addEventListener("click", () => {
+        burger.classList.toggle("is-active");
+        menu.classList.toggle("is-active");
+      });
+    }
+
+    /* Mobile Categories */
+    const categoryToggle = document.querySelector(".category-toggle");
+    const categoryDropdown = document.querySelector(".mobile-category");
+
+    if (categoryToggle && categoryDropdown) {
+      categoryToggle.addEventListener("click", (event) => {
+        if (window.innerWidth <= 1023) {
+          event.preventDefault();
+          categoryDropdown.classList.toggle("is-active");
+        }
+      });
+    }
+  });
+</script>

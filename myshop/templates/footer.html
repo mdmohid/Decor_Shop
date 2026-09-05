@@ -1,3 +1,4 @@
+{% comment %}
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
@@ -8,3 +9,301 @@
     <p>© 2026 Decor Shop. All rights reserved.</p>
   </div>
 </footer>
+{% endcomment %} {% load static %}
+
+<footer class="decor-footer">
+  <div class="container">
+    <!-- Main Footer -->
+    <div class="columns is-multiline">
+      <!-- Brand -->
+      <div class="column is-4-desktop is-6-tablet is-12-mobile">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-logo-mark">D</span>
+
+            <div>
+              <strong>Decor</strong>
+              <small>SHOP</small>
+            </div>
+          </div>
+
+          <p class="footer-description">
+            Discover stylish furniture and beautiful home decor designed to make
+            your space feel truly yours.
+          </p>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div class="column is-2-desktop is-3-tablet is-6-mobile">
+        <h3 class="footer-title">Shop</h3>
+
+        <ul class="footer-links">
+          <li>
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+
+          <li>
+            <a href="{% url 'products' %}">All Products</a>
+          </li>
+
+          <li>
+            <a href="{% url 'products' %}">Categories</a>
+          </li>
+
+          <li>
+            <a href="{% url 'cart' %}">Shopping Cart</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Customer Service -->
+      <div class="column is-3-desktop is-3-tablet is-6-mobile">
+        <h3 class="footer-title">Customer Service</h3>
+
+        <ul class="footer-links">
+          <li>
+            <a href="#" class="footer-modal-link" data-modal="faqModal">
+              FAQ
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-modal-link" data-modal="supportModal">
+              Help & Support
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-modal-link" data-modal="privacyModal">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-modal-link" data-modal="termsModal">
+              Terms & Conditions
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Account / Connect -->
+      <div class="column is-3-desktop is-12-tablet is-6-mobile">
+        <h3 class="footer-title">My Account</h3>
+
+        <ul class="footer-links">
+          {% if user.is_authenticated %}
+
+          <li>
+            <a href="{% url 'profile' %}"> My Profile </a>
+          </li>
+
+          <li>
+            <a href="{% url 'cart' %}"> My Cart </a>
+          </li>
+
+          {% else %}
+
+          <li>
+            <a href="{% url 'login' %}"> Login </a>
+          </li>
+
+          <li>
+            <a href="{% url 'register' %}"> Create Account </a>
+          </li>
+
+          {% endif %}
+        </ul>
+
+        <!-- Social -->
+        <div class="footer-social-section">
+          <h3 class="footer-title">Follow Us</h3>
+
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook"> f </a>
+
+            <a href="#" class="social-btn" aria-label="Instagram"> ig </a>
+
+            <a href="#" class="social-btn" aria-label="X"> X </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+      <p>© 2026 <strong>Decor Shop</strong>. All rights reserved.</p>
+
+      <p class="footer-tagline">Furniture & Home Decor</p>
+    </div>
+  </div>
+</footer>
+
+<!--FAQ modal-->
+
+<div id="faqModal" class="modal decor-modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Frequently Asked Questions</p>
+
+      <button
+        class="delete"
+        aria-label="close"
+        data-close-modal="faqModal"
+      ></button>
+    </header>
+
+    <section class="modal-card-body">
+      <div class="content">
+        <h4>What is Decor Shop?</h4>
+
+        <p>
+          Decor Shop is an online furniture and home decor store where customers
+          can explore and purchase products for their homes.
+        </p>
+
+        <h4>How can I purchase a product?</h4>
+
+        <p>
+          Browse our products, add the items you want to your cart, and continue
+          through the checkout process.
+        </p>
+
+        <h4>Do I need an account?</h4>
+
+        <p>
+          You can browse products without an account. An account allows you to
+          manage your profile and shopping activities.
+        </p>
+      </div>
+    </section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-dark" data-close-modal="faqModal">Close</button>
+    </footer>
+  </div>
+</div>
+
+<!-- supportModal -->
+
+<div id="supportModal" class="modal decor-modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Help & Support</p>
+
+      <button
+        class="delete"
+        aria-label="close"
+        data-close-modal="supportModal"
+      ></button>
+    </header>
+
+    <section class="modal-card-body">
+      <div class="content">
+        <p>Need help with your order or account?</p>
+
+        <p>
+          <strong>Email:</strong>
+          support@decorshop.com
+        </p>
+
+        <p>
+          <strong>Phone:</strong>
+          +977 9800000000
+        </p>
+
+        <p>
+          <strong>Support Hours:</strong>
+          Monday – Friday, 9 AM – 6 PM
+        </p>
+      </div>
+    </section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-dark" data-close-modal="supportModal">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- privacyModal -->
+
+<div id="privacyModal" class="modal decor-modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Privacy Policy</p>
+
+      <button
+        class="delete"
+        aria-label="close"
+        data-close-modal="privacyModal"
+      ></button>
+    </header>
+
+    <section class="modal-card-body">
+      <div class="content">
+        <p>Your privacy is important to us.</p>
+
+        <p>
+          Decor Shop collects only the information required to provide account,
+          shopping and order-related services.
+        </p>
+
+        <p>We do not sell your personal information to third parties.</p>
+      </div>
+    </section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-dark" data-close-modal="privacyModal">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- termsModal -->
+
+<div id="termsModal" class="modal decor-modal">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Terms & Conditions</p>
+
+      <button
+        class="delete"
+        aria-label="close"
+        data-close-modal="termsModal"
+      ></button>
+    </header>
+
+    <section class="modal-card-body">
+      <div class="content">
+        <p>
+          By using Decor Shop, you agree to use the website responsibly and
+          provide accurate account information.
+        </p>
+
+        <p>
+          Product availability, pricing and other information may change without
+          prior notice.
+        </p>
+      </div>
+    </section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-dark" data-close-modal="termsModal">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>

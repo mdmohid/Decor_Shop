@@ -301,7 +301,7 @@ margin-top: 15px;
 color: #ffffff !important;
 
 
-font-size: 14px;
+font-size: 15px;
 font-weight: 600;
 
 margin-bottom: 18px;
@@ -331,7 +331,7 @@ margin-bottom: 11px;
 color: #999999;
 
 
-font-size: 13px;
+font-size: 14px;
 
 text-decoration: none;
 
@@ -405,7 +405,7 @@ transform: translateY(-3px);
 height: 1px;
 
 
-background: #222222;
+background: #3b3939;
 
 margin: 35px 0 20px;
 
@@ -525,3 +525,4 @@ border-top: 1px solid #eeeeee;
 }
 
 }
+

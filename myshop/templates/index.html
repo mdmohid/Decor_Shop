@@ -1,47 +1,154 @@
-{% extends 'base.html' %} {% block title %} Home | Decor Shop {% endblock %} 
-{% block content %}
+ 
+{% extends 'base.html' %} {% block title %} Home | Decor Shop {% endblock %} {% block content %}
 
-<section class="hero is-medium">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title is-1">Welcome to Decor Shop</h1>
+<!-- ================= HERO ================= -->
 
-      <p class="subtitle">Discover beautiful furniture and home decor</p>
+<section class="home-hero">
+  <div class="container">
+    <div class="home-hero-content">
+      <p class="hero-label">FURNITURE & HOME DECOR</p>
 
-      <a href="#" class="button is-dark is-medium"> Shop Now </a>
+      <h1>
+        Make Your Space<br />
+        Feel Like Home.
+      </h1>
+
+      <p class="hero-description">
+        Discover beautiful furniture and timeless decor designed to make every
+        room feel special.
+      </p>
+
+      <a href="{% url 'products' %}" class="hero-button"> Shop Collection </a>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ================= CATEGORIES ================= -->
+
+<section class="home-section">
   <div class="container">
-    <h2 class="title has-text-centered">Featured Categories</h2>
+    <div class="section-heading">
+      <p class="section-label">EXPLORE</p>
+      <h2>Shop by Category</h2>
+      <p>Find pieces that perfectly match your space and style.</p>
+    </div>
 
-    <div class="columns">
-      <div class="column">
-        <div class="box has-text-centered">
-          <h3 class="title is-4">Sofas</h3>
+    <div class="category-grid">
+      {% for category in categories %}
 
-          <p>Comfortable sofas for your home.</p>
+      <a
+        href="{% url 'products' %}?category={{ category.slug }}"
+        class="category-card"
+      >
+        {% if category.image %}
+        <img src="{{ category.image.url }}" alt="{{ category.name }}" />
+        {% else %}
+        <div class="category-placeholder">{{ category.name|first }}</div>
+        {% endif %}
+
+        <div class="category-overlay">
+          <h3>{{ category.name }}</h3>
+          <span>Explore Collection →</span>
         </div>
+      </a>
+
+      {% empty %}
+
+      <p>No categories available.</p>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<section class="home-section featured-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">OUR COLLECTION</p>
+      <h2>Featured Products</h2>
+      <p>Carefully selected pieces for your home.</p>
+    </div>
+
+    <div class="product-grid">
+      {% for product in featured_products %}
+
+      <div class="home-product-card">
+        <a href="{% url 'product_detail' product.slug %}">
+          <div class="product-image">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+            {% else %}
+            <div class="product-placeholder">No Image</div>
+            {% endif %}
+          </div>
+
+          <div class="product-info">
+            <p class="product-category">{{ product.category.name }}</p>
+
+            <h3>{{ product.name }}</h3>
+
+            <p class="product-price">Rs. {{ product.price }}</p>
+          </div>
+        </a>
       </div>
 
-      <div class="column">
-        <div class="box has-text-centered">
-          <h3 class="title is-4">Tables</h3>
+      {% empty %}
 
-          <p>Modern tables for every space.</p>
-        </div>
+      <p>No products available.</p>
+
+      {% endfor %}
+    </div>
+
+    <div class="view-all-wrapper">
+      <a href="{% url 'products' %}" class="outline-button">
+        View All Products
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY DECOR SHOP ================= -->
+
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">WHY DECOR SHOP</p>
+      <h2>Designed for Better Living</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="benefit-icon">✦</div>
+        <h3>Quality Furniture</h3>
+        <p>Carefully selected furniture made for everyday living.</p>
       </div>
 
-      <div class="column">
-        <div class="box has-text-centered">
-          <h3 class="title is-4">Chairs</h3>
+      <div class="benefit">
+        <div class="benefit-icon">◇</div>
+        <h3>Modern Designs</h3>
+        <p>Beautiful designs that bring character to your home.</p>
+      </div>
 
-          <p>Stylish and comfortable chairs.</p>
-        </div>
+      <div class="benefit">
+        <div class="benefit-icon">✓</div>
+        <h3>Simple Shopping</h3>
+        <p>Browse, choose and order your favorite pieces easily.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="home-cta">
+  <div class="container">
+    <h2>Give Your Home a New Look.</h2>
+
+    <p>Explore our collection of furniture and home decor.</p>
+
+    <a href="{% url 'products' %}" class="hero-button"> Explore Products </a>
   </div>
 </section>
 

@@ -10,8 +10,19 @@ from .models import  Cart, CartItem, Order, OrderItem
 
 # Create your views here.
 #home
+# def home(request):
+#   return render(request,'index.html')
+
 def home(request):
-  return render(request,'index.html')
+    categories = Category.objects.all()
+    featured_products = Product.objects.filter(
+        is_available=True
+    ).order_by('-created_at')[:6]
+
+    return render(request, 'index.html', {
+        'categories': categories,
+        'featured_products': featured_products,
+    })
 
 #products
 # def products(request):

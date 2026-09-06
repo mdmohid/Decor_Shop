@@ -123,14 +123,12 @@
           </div>
         </div>
 
-        <!-- Cart -->
-        <a class="navbar-item cart-link" href="{% url 'cart' %}">
-          <span class="cart-icon">🛒</span>
-          <span>Cart</span>
-        </a>
+        <a class="navbar-item" href="#"> About Us </a>
+        <a class="navbar-item" href="#"> Contact </a>
       </div>
 
       <!-- Right Side -->
+
       <div class="navbar-end">
         {% if user.is_authenticated %}
 
@@ -152,6 +150,12 @@
         </a>
 
         {% endif %}
+
+        <!-- Cart -->
+        <a class="navbar-item cart-link" href="{% url 'cart' %}">
+          <span class="cart-icon">🛒</span>
+          <span>Cart</span>
+        </a>
       </div>
     </div>
   </div>

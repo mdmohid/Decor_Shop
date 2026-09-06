@@ -1,77 +1,101 @@
-{% extends 'base.html' %} {% block title %} {{ product.name }} | Decor Shop 
+{% extends 'base.html' %} {% block title %}{{ product.name }} | Decor Shop
 {% endblock %} {% block content %}
 
-<section class="section">
+<section class="product-detail-section">
   <div class="container">
-    <div class="columns">
-      <!-- Product Image -->
-      <div class="column is-half">
-        {% if product.image %}
+    <!-- back link -->
+    <div class="product-back">
+      <a href="{% url 'products' %}"> ← Back to Products </a>
+    </div>
 
-        <figure class="image">
+    <div class="columns is-variable is-8">
+      <!-- product image -->
+      <div class="column is-6">
+        <div class="product-detail-image">
+          {% if product.image %}
+
           <img src="{{ product.image.url }}" alt="{{ product.name }}" />
-        </figure>
 
-        {% else %}
+          {% else %}
 
-        <p>No image available.</p>
+          <div class="product-detail-placeholder">No Image Available</div>
 
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
 
-      <!-- Product Information -->
-      <div class="column is-half">
-        <h1 class="title">{{ product.name }}</h1>
+      <!-- product information -->
+      <div class="column is-6">
+        <div class="product-detail-info">
+          <!-- category -->
+          <p class="product-detail-category">{{ product.category.name }}</p>
 
-        <p>Category: {{ product.category.name }}</p>
+          <!-- Name -->
+          <h1>{{ product.name }}</h1>
 
-        <br />
+          <!-- Price -->
+          <div class="product-detail-price">Rs. {{ product.price }}</div>
 
-        <p>
-          <strong>Price:</strong>
-          Rs. {{ product.price }}
-        </p>
+          <div class="product-detail-divider"></div>
 
-        <br />
+          <!-- Description -->
+          <div class="product-detail-description">
+            <h3>Description</h3>
 
-        <p>
-          <strong>Description:</strong>
-        </p>
+            <p>{{ product.description }}</p>
+          </div>
 
-        <p>{{ product.description }}</p>
+          <!-- Stock -->
+          <div class="product-detail-stock">
+            {% if product.stock > 0 %}
 
-        <br />
+            <span class="stock-status available"> ● In Stock </span>
 
-        <p>
-          <strong>Stock:</strong>
-          {{ product.stock }}
-        </p>
+            <span> {{ product.stock }} available </span>
 
-        <br />
+            {% else %}
 
-        {% if product.stock > 0 %}
+            <span class="stock-status unavailable"> ● Out of Stock </span>
 
-        <p>Available</p>
+            {% endif %}
+          </div>
 
-        <br />
+          <!-- add to cart -->
+          {% if product.stock > 0 %}
 
-        {% comment %} <button class="button">Add to Cart</button> {% endcomment %}
+          <form
+            method="POST"
+            action="{% url 'add_to_cart' product.slug %}"
+            class="product-cart-form"
+          >
+            {% csrf_token %}
 
-        <form method="POST" action="{% url 'add_to_cart' product.slug %}">
-          {% csrf_token %}
+            <button type="submit" class="button product-add-button">
+              Add to Cart
+            </button>
+          </form>
 
-          <button type="submit" class="button">Add to Cart</button>
-        </form>
+          {% else %}
 
-        {% else %}
+          <button class="button product-add-button" disabled>
+            Out of Stock
+          </button>
 
-        <p>Out of Stock</p>
+          {% endif %}
 
-        {% endif %}
+          <!-- extra information -->
+          <div class="product-detail-note">
+            <div>
+              <strong>Quality Furniture</strong>
+              <span>Selected for modern living</span>
+            </div>
 
-        <br /><br />
-
-        <a href="{% url 'products' %}"> ← Back to Products </a>
+            <div>
+              <strong>Easy Shopping</strong>
+              <span>Simple and convenient ordering</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -2531,6 +2531,258 @@ body {
 }
 
 
+/* Contact Page */
+
+/* Contact-hero */
+
+.contact-hero {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    background: #f1f1ee;
+}
+
+.contact-hero-content {
+    max-width: 700px;
+    padding: 75px 24px;
+}
+
+.contact-hero h1 {
+    color: #181818;
+    font-size: clamp(42px, 5vw, 62px);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin: 12px 0 22px;
+}
+
+.contact-hero-content > p:last-child {
+    max-width: 580px;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* Contact section */
+.contact-section {
+    padding: 100px 24px;
+    background: #fafafa;
+}
+
+
+/* Contact information */
+.contact-info {
+    padding: 15px 10px;
+}
+
+.contact-info h2,
+.contact-form-card h2 {
+    color: #181818;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-top: 8px;
+}
+
+.contact-intro {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 18px 0 35px;
+    max-width: 470px;
+}
+
+
+/* Contact details */
+.contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 17px;
+    margin-bottom: 28px;
+}
+
+.contact-detail-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    color: #333;
+    font-size: 17px;
+}
+
+.contact-detail div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-detail span {
+    color: #999;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    margin-bottom: 5px;
+}
+
+.contact-detail strong {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.contact-detail p {
+    color: #888;
+    font-size: 12px;
+}
+
+
+/* Business hours */
+.contact-hours {
+    border-top: 1px solid #e5e5e5;
+    margin-top: 35px;
+    padding-top: 28px;
+    max-width: 470px;
+}
+
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 11px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.hours-row span {
+    color: #777;
+    font-size: 12px;
+}
+
+.hours-row strong {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* Contact form*/
+.contact-form-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 35px;
+}
+
+.contact-divider {
+    height: 1px;
+    background: #e8e8e8;
+    margin: 25px 0 30px;
+}
+
+.contact-form-card .label {
+    color: #333;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contact-input {
+    border-color: #ddd;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 13px;
+}
+
+.contact-input:focus {
+    border-color: #555;
+    box-shadow: none;
+}
+
+.contact-input::placeholder {
+    color: #aaa;
+}
+
+.contact-form-card textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-submit {
+    margin-top: 28px;
+}
+
+.contact-submit-button {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 5px;
+    background: #222;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all .25s ease;
+}
+
+.contact-submit-button:hover {
+    background: #444;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+
+/* Google map */
+.contact-map-section {
+    padding: 90px 24px 100px;
+    background: #f1f1ee;
+}
+
+.contact-map {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #ddd;
+}
+
+.contact-map iframe {
+    display: block;
+}
+
+
+/* Contact CTA */
+.contact-cta {
+    padding: 90px 24px;
+    background: #222;
+    text-align: center;
+}
+
+.contact-cta .section-label {
+    color: #aaa;
+}
+
+.contact-cta h2 {
+    color: #fff;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 10px 0 15px;
+}
+
+.contact-cta p:not(.section-label) {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.contact-cta .hero-button {
+    display: inline-flex;
+}
+
+
 /* footer */
 
 .decor-footer {

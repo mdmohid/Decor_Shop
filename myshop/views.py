@@ -24,9 +24,13 @@ def home(request):
         'featured_products': featured_products,
     })
     
-    
+#about us
 def about(request):
   return render(request, 'about.html')
+
+#contact us
+def contact(request):
+    return render(request, 'contact.html')
 
 #products
 # def products(request):

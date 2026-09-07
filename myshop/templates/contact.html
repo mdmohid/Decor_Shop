@@ -1,0 +1,231 @@
+{% extends 'base.html' %} {% block title %}Contact Us | Decor Shop{% endblock %}
+{% block content %}
+
+<!-- Contact hero -->
+<section class="contact-hero">
+  <div class="container">
+    <div class="contact-hero-content">
+      <p class="section-label">GET IN TOUCH</p>
+
+      <h1>
+        We'd Love to<br />
+        Hear From You.
+      </h1>
+
+      <p>
+        Have a question about our products or your order? Get in touch with our
+        team and we'll be happy to help.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact information and Form -->
+<section class="contact-section">
+  <div class="container">
+    <div class="columns is-variable is-8">
+      <!-- contact information -->
+      <div class="column is-5">
+        <div class="contact-info">
+          <p class="section-label">CONTACT US</p>
+
+          <h2>Let's Talk</h2>
+
+          <p class="contact-intro">
+            Whether you need help choosing a product, have a question about an
+            order, or simply want to say hello, we're here for you.
+          </p>
+
+          <!-- Address -->
+          <div class="contact-detail">
+            <div class="contact-detail-icon">⌖</div>
+
+            <div>
+              <span> VISIT US </span>
+
+              <strong> Kathmandu, Nepal </strong>
+
+              <p>Our showroom and office location</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-detail">
+            <div class="contact-detail-icon">@</div>
+
+            <div>
+              <span> EMAIL US </span>
+
+              <strong> alammohid855@gmail.com </strong>
+
+              <p>We'll respond as soon as possible</p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="contact-detail">
+            <div class="contact-detail-icon">☎</div>
+
+            <div>
+              <span> CALL US </span>
+
+              <strong> +977 9819965626 </strong>
+
+              <p>Monday – Friday, 9:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+
+          <!-- Business hours -->
+          <div class="contact-hours">
+            <p class="section-label">BUSINESS HOURS</p>
+
+            <div class="hours-row">
+              <span> Monday – Friday </span>
+
+              <strong> 9:00 AM – 6:00 PM </strong>
+            </div>
+
+            <div class="hours-row">
+              <span> Saturday </span>
+
+              <strong> Closed </strong>
+            </div>
+
+            <div class="hours-row">
+              <span> Sunday </span>
+
+              <strong> 10:00 AM – 2:00 PM </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- contact form -->
+      <div class="column is-7">
+        <div class="contact-form-card">
+          <p class="section-label">SEND A MESSAGE</p>
+
+          <h2>How Can We Help?</h2>
+
+          <div class="contact-divider"></div>
+
+          <form method="POST">
+            {% csrf_token %}
+
+            <!-- Name and Email -->
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label"> Full Name </label>
+
+                  <div class="control">
+                    <input
+                      class="input contact-input"
+                      type="text"
+                      name="name"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="field">
+                  <label class="label"> Email </label>
+
+                  <div class="control">
+                    <input
+                      class="input contact-input"
+                      type="email"
+                      name="email"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="field">
+              <label class="label"> Subject </label>
+
+              <div class="control">
+                <input
+                  class="input contact-input"
+                  type="text"
+                  name="subject"
+                  placeholder="What can we help you with?"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="field">
+              <label class="label"> Message </label>
+
+              <div class="control">
+                <textarea
+                  class="textarea contact-input"
+                  name="message"
+                  placeholder="Write your message here..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="contact-submit">
+              <button type="submit" class="button contact-submit-button">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Google map -->
+<section class="contact-map-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">FIND US</p>
+
+      <h2>Visit Our Location</h2>
+
+      <p>Find us in Kathmandu and come visit us.</p>
+    </div>
+
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps?q=Kathmandu,Nepal&output=embed"
+        width="100%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Contact cta -->
+<section class="contact-cta">
+  <div class="container">
+    <p class="section-label">NEED HELP?</p>
+
+    <h2>We're Here to Help.</h2>
+
+    <p>Explore our collection or get in touch with our team.</p>
+
+    <a href="{% url 'products' %}" class="hero-button"> Explore Products </a>
+  </div>
+</section>
+
+{% endblock %}

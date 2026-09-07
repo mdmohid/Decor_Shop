@@ -23,6 +23,10 @@ def home(request):
         'categories': categories,
         'featured_products': featured_products,
     })
+    
+    
+def about(request):
+  return render(request, 'about.html')
 
 #products
 # def products(request):

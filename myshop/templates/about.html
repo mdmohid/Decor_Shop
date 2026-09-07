@@ -1,0 +1,212 @@
+{% extends 'base.html' %} {% block title %}About Us | Decor Shop{% endblock %}
+{% block content %}
+
+<!-- About hero -->
+<section class="about-hero">
+  <div class="container">
+    <div class="about-hero-content">
+      <p class="section-label">ABOUT DECOR SHOP</p>
+
+      <h1>
+        Beautiful Spaces.<br />
+        Thoughtfully Designed.
+      </h1>
+
+      <p>
+        We bring together furniture and home decor that make everyday spaces
+        feel comfortable, beautiful and personal.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Our story -->
+<section class="about-story-section">
+  <div class="container">
+    <div class="columns is-variable is-8 is-vcentered">
+      <div class="column is-6">
+        <div class="about-story-image">
+          <div class="about-image-content">
+            <span>DECOR</span>
+            <strong>SHOP</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-6">
+        <div class="about-story-content">
+          <p class="section-label">OUR STORY</p>
+
+          <h2>Creating Homes That Feel Like You.</h2>
+
+          <p>
+            Decor Shop was created with a simple idea: finding beautiful
+            furniture and home decor should be easy and enjoyable.
+          </p>
+
+          <p>
+            From comfortable furniture to carefully selected decorative pieces,
+            we bring together products designed to complement modern homes and
+            everyday living.
+          </p>
+
+          <p>
+            Our goal is not simply to sell products. We want to help you create
+            spaces that feel welcoming, comfortable and uniquely yours.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our values -->
+<section class="about-values-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">WHAT WE BELIEVE</p>
+
+      <h2>Our Values</h2>
+
+      <p>Everything we do is guided by a few simple principles.</p>
+    </div>
+
+    <div class="columns is-variable is-5">
+      <div class="column is-4">
+        <div class="about-value-card">
+          <div class="about-value-icon">✦</div>
+
+          <h3>Quality</h3>
+
+          <p>
+            We carefully select products that combine quality, comfort and
+            lasting design.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="about-value-card">
+          <div class="about-value-icon">◇</div>
+
+          <h3>Simplicity</h3>
+
+          <p>
+            We believe shopping for your home should be simple, clear and
+            enjoyable.
+          </p>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <div class="about-value-card">
+          <div class="about-value-icon">✓</div>
+
+          <h3>Customer First</h3>
+
+          <p>
+            Our customers are at the heart of everything we build and every
+            experience we create.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="about-team-section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">MEET THE TEAM</p>
+
+      <h2>The People Behind Decor Shop</h2>
+
+      <p>
+        A small team working together to make beautiful home shopping a little
+        easier.
+      </p>
+    </div>
+
+    <div class="columns is-variable is-5 is-centered">
+      <!-- Team member 1 -->
+      <div class="column is-4-desktop is-6-tablet">
+        <div class="team-card">
+          <div class="team-photo">
+            {% comment %}
+            <div class="team-placeholder">
+              <span>MA</span>
+            </div>
+            {% endcomment %}
+            <img src="../static/images/callmemd.jpg" alt="mohid" />
+          </div>
+
+          <div class="team-info">
+            <h3>Mohid Alam</h3>
+
+            <p class="team-role">Founder & Creative Director</p>
+
+            <p>
+              Focused on bringing together beautiful products and thoughtful
+              design.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team member2 -->
+      <div class="column is-4-desktop is-6-tablet">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="../static/images/sampurna.jpg" alt="sampurna" />
+          </div>
+
+          <div class="team-info">
+            <h3>Sampurna Gautam</h3>
+
+            <p class="team-role">Product & Design Lead</p>
+
+            <p>
+              Curates furniture and decor with a focus on style, comfort and
+              functionality.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team member3 -->
+      <div class="column is-4-desktop is-6-tablet">
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-placeholder">
+              <span>AY</span>
+            </div>
+          </div>
+
+          <div class="team-info">
+            <h3>Aayush Yadav</h3>
+
+            <p class="team-role">Operations Manager</p>
+
+            <p>Makes sure every order and customer experience runs smoothly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="container">
+    <p class="section-label">FIND YOUR STYLE</p>
+
+    <h2>Make Your Space Feel Like Home.</h2>
+
+    <p>Explore our collection and discover something perfect for your space.</p>
+
+    <a href="{% url 'products' %}" class="hero-button"> Explore Products </a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,85 +1,133 @@
-{% extends 'base.html' %} {% block title %} Checkout | Decor Shop {% endblock %}
+{% extends 'base.html' %} {% block title %}Checkout | Decor Shop{% endblock %}
 {% block content %}
 
-<section class="section">
+<section class="checkout-section">
   <div class="container">
-    <h1 class="title">Checkout</h1>
+    <!-- Page header -->
+    <div class="checkout-header">
+      <p class="section-label">COMPLETE YOUR ORDER</p>
+      <h1>Checkout</h1>
+    </div>
 
-    <div class="columns">
-      <!-- Customer Information -->
+    <div class="columns is-variable is-6">
+      <!-- Shipping information -->
+      <div class="column is-7">
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <p class="section-label">DELIVERY DETAILS</p>
 
-      <div class="column is-half">
-        <h2 class="title is-4">Shipping Information</h2>
-
-        <form method="POST">
-          {% csrf_token %}
-
-          <div class="field">
-            <label class="label"> Full Name </label>
-
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                value="{{ request.user.get_full_name }}"
-                disabled
-              />
-            </div>
+            <h2>Shipping Information</h2>
           </div>
 
-          <div class="field">
-            <label class="label"> Phone Number </label>
+          <form method="POST">
+            {% csrf_token %}
 
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                name="phone"
-                placeholder="Enter phone number"
-                required
-              />
+            <!-- Full name -->
+            <div class="field">
+              <label class="label"> Full Name </label>
+
+              <div class="control">
+                <input
+                  class="input checkout-input"
+                  type="text"
+                  value="{{ request.user.get_full_name }}"
+                  disabled
+                />
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label"> Shipping Address </label>
+            <!-- Phone -->
+            <div class="field">
+              <label class="label"> Phone Number </label>
 
-            <div class="control">
-              <textarea
-                class="textarea"
-                name="shipping_address"
-                placeholder="Enter your complete address"
-                required
-              ></textarea>
+              <div class="control">
+                <input
+                  class="input checkout-input"
+                  type="text"
+                  name="phone"
+                  placeholder="Enter phone number"
+                  required
+                />
+              </div>
             </div>
-          </div>
 
-          <button type="submit" class="button">Place Order</button>
-        </form>
+            <!-- Address -->
+            <div class="field">
+              <label class="label"> Shipping Address </label>
+
+              <div class="control">
+                <textarea
+                  class="textarea checkout-input"
+                  name="shipping_address"
+                  placeholder="Enter your complete address"
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Place order -->
+            <div class="checkout-submit">
+              <button type="submit" class="button place-order-button">
+                Place Order
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <!-- Order Summary -->
+      <!-- Order summary -->
+      <div class="column is-5">
+        <div class="checkout-summary">
+          <p class="section-label">YOUR ORDER</p>
 
-      <div class="column is-half">
-        <h2 class="title is-4">Order Summary</h2>
+          <h2>Order Summary</h2>
 
-        {% for item in cart_items %}
+          <div class="checkout-divider"></div>
 
-        <div class="box">
-          <p>
-            <strong> {{ item.product.name }} </strong>
+          {% for item in cart_items %}
+
+          <div class="checkout-product">
+            <!-- Product image -->
+            <div class="checkout-product-image">
+              {% if item.product.image %}
+
+              <img
+                src="{{ item.product.image.url }}"
+                alt="{{ item.product.name }}"
+              />
+
+              {% else %}
+
+              <div class="checkout-image-placeholder">No Image</div>
+
+              {% endif %}
+            </div>
+
+            <!-- Product info -->
+            <div class="checkout-product-info">
+              <h3>{{ item.product.name }}</h3>
+
+              <p>Quantity: {{ item.quantity }}</p>
+
+              <strong> Rs. {{ item.product.price }} </strong>
+            </div>
+          </div>
+
+          {% endfor %}
+
+          <div class="checkout-divider"></div>
+
+          <!-- Total -->
+          <div class="checkout-total">
+            <span> Total </span>
+
+            <strong> Rs. {{ total }} </strong>
+          </div>
+
+          <p class="checkout-note">
+            Please review your shipping information before placing your order.
           </p>
-
-          <p>Quantity: {{ item.quantity }}</p>
-
-          <p>Price: Rs. {{ item.product.price }}</p>
         </div>
-
-        {% endfor %}
-
-        <hr />
-
-        <h2 class="title is-4">Total: Rs. {{ total }}</h2>
       </div>
     </div>
   </div>

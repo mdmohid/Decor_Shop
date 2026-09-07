@@ -1,57 +1,106 @@
-{% extends 'base.html' %} {% block title %} My Profile | Decor Shop 
-{% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %}My Profile | Decor Shop{% endblock %}
+{% block content %}
 
-<section class="section">
+<section class="profile-section">
   <div class="container">
-    <h1 class="title">My Profile</h1>
+    <!-- Profile header -->
+    <div class="profile-header">
+      <p class="section-label">MY ACCOUNT</p>
 
-    <div class="box">
-      <p>
-        <strong>Username:</strong>
-        {{ user.username }}
-      </p>
+      <h1>My Profile</h1>
 
-      <p>
-        <strong>Email:</strong>
-        {{ user.email }}
-      </p>
+      <p>Manage your account information and view your orders.</p>
     </div>
 
-    <h2 class="title is-4">My Orders</h2>
+    <div class="columns is-variable is-6">
+      <!-- account information -->
+      <div class="column is-5">
+        <div class="profile-card">
+          <p class="section-label">ACCOUNT DETAILS</p>
 
-    {% for order in orders %}
+          <h2>Personal Information</h2>
 
-    <div class="box">
-      <p>
-        <strong>Order:</strong>
-        {{ order.order_number }}
-      </p>
+          <div class="profile-divider"></div>
 
-      <p>
-        <strong>Status:</strong>
-        {{ order.status }}
-      </p>
+          <div class="profile-info">
+            <div class="profile-info-row">
+              <span>Username</span>
+              <strong>{{ user.username }}</strong>
+            </div>
 
-      <p>
-        <strong>Total:</strong>
-        Rs. {{ order.total_amount }}
-      </p>
+            <div class="profile-info-row">
+              <span>Email</span>
+              <strong>{{ user.email }}</strong>
+            </div>
+          </div>
 
-      <p>
-        <strong>Date:</strong>
-        {{ order.created_at }}
-      </p>
+          <div class="profile-logout">
+            <a href="{% url 'logout' %}" class="button profile-logout-button">
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="column is-7">
+        <div class="orders-card">
+          <p class="section-label">ORDER HISTORY</p>
+
+          <h2>My Orders</h2>
+
+          <div class="profile-divider"></div>
+
+          {% for order in orders %}
+
+          <div class="profile-order">
+            <div class="profile-order-main">
+              <div>
+                <span class="order-label"> ORDER </span>
+
+                <strong> {{ order.order_number }} </strong>
+              </div>
+
+              <div>
+                <span class="order-label"> DATE </span>
+
+                <span class="order-date"> {{ order.created_at }} </span>
+              </div>
+            </div>
+
+            <div class="profile-order-bottom">
+              <div>
+                <span class="order-label"> STATUS </span>
+
+                <span class="profile-order-status"> {{ order.status }} </span>
+              </div>
+
+              <div class="profile-order-total">
+                <span class="order-label"> TOTAL </span>
+
+                <strong> Rs. {{ order.total_amount }} </strong>
+              </div>
+            </div>
+          </div>
+
+          {% empty %}
+
+          <div class="no-orders">
+            <div class="no-orders-icon">🛍</div>
+
+            <h3>No orders yet</h3>
+
+            <p>You haven't placed any orders yet.</p>
+
+            <a href="{% url 'products' %}" class="button profile-shop-button">
+              Start Shopping
+            </a>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
     </div>
-
-    {% empty %}
-
-    <p>You have no orders yet.</p>
-
-    {% endfor %}
-
-    <br />
-
-    <a href="{% url 'logout' %}"> Logout </a>
   </div>
 </section>
 

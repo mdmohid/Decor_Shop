@@ -1,60 +1,6 @@
-{% comment %}
-<nav class="navbar is-light">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{% url 'home' %}">
-        <strong>Decor Shop</strong>
-      </a>
-    </div>
-
-    <div class="navbar-menu is-active">
-      <div class="navbar-start">
-        <a class="navbar-item" href="{% url 'home' %}"> Home </a>
-
-        <a class="navbar-item" href="{% url 'products'%}"> Products </a>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> Categories </a>
-
-          <div class="navbar-dropdown">
-            {% for category in categories %}
-            <a
-              class="navbar-item"
-              href="{% url 'products' %}?category={{ category.slug }}"
-            >
-              {{ category.name }}
-            </a>
-            {% endfor %}
-          </div>
-        </div>
-
-        <a class="navbar-item" href="{% url 'cart' %}"> Cart </a>
-      </div>
-
-      <div class="navbar-end">
-        {% if user.is_authenticated %}
-        <a class="navbar-item" href="{% url 'profile' %}">
-          {{ user.username }}
-        </a>
-
-        <a class="navbar-item" href="{% url 'logout' %}"> Logout </a>
-
-        {% else %}
-
-        <a class="navbar-item" href="{% url 'login' %}"> Login </a>
-
-        <a class="navbar-item" href="{% url 'register' %}"> Register </a>
-
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</nav>
-{% endcomment %}
-
 <nav class="navbar decor-navbar" role="navigation" aria-label="main navigation">
   <div class="container">
-    <!-- Logo + Mobile Burger -->
+    <!-- Logo and Mobile Burger -->
     <div class="navbar-brand">
       <a class="navbar-item decor-logo" href="{% url 'home' %}">
         <span class="logo-mark">D</span>
@@ -107,7 +53,7 @@
             {% endfor %}
           </div>
         </div>
-        {% endcomment %}
+        {% comment %} {% endcomment %}
         <div class="navbar-item has-dropdown is-hoverable mobile-category">
           <a class="navbar-link category-toggle"> Categories </a>
 
@@ -141,18 +87,50 @@
           Logout
         </a>
 
-        {% else %}
-
+        {% else %} {% comment %}
         <a class="navbar-item login-link" href="{% url 'login' %}"> Login </a>
+        {% endcomment %} {% comment %}
+        <a class="navbar-item login-link" href="#" id="openLoginModal">
+          Login
+        </a>
+        {% endcomment %}
+        <a class="navbar-item login-link open-login-modal" href="#"> Login </a>
 
+        {% comment %}
         <a class="navbar-item register-button" href="{% url 'register' %}">
+          Register
+        </a>
+        {% endcomment %} {% comment %}
+        <a class="navbar-item register-button" href="#" id="openRegisterModal">
+          Register
+        </a>
+        {% endcomment %}
+        <a class="navbar-item register-button open-register-modal" href="#">
           Register
         </a>
 
         {% endif %}
 
         <!-- Cart -->
+        {% comment %}
         <a class="navbar-item cart-link" href="{% url 'cart' %}">
+          <span class="cart-icon">🛒</span>
+          <span>Cart</span>
+        </a>
+        {% endcomment %} {% comment %}
+        <a
+          class="navbar-item cart-link {% if not user.is_authenticated %}open-login-modal{% endif %}"
+          href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}#{% endif %}"
+        >
+          <span class="cart-icon">🛒</span>
+          <span>Cart</span>
+        </a>
+        {% endcomment %}
+        <a
+          class="navbar-item cart-link {% if not user.is_authenticated %}open-login-modal{% endif %}"
+          href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}#{% endif %}"
+          data-login-next="{% url 'cart' %}"
+        >
           <span class="cart-icon">🛒</span>
           <span>Cart</span>
         </a>

@@ -1,0 +1,401 @@
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card register-modal-card">
+    <header class="modal-card-head register-modal-head">
+      <div>
+        <p class="register-modal-label">JOIN DECOR SHOP</p>
+
+        <p class="modal-card-title">Create Your Account</p>
+      </div>
+
+      <button class="delete register-modal-close" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body register-modal-body">
+      {% if messages %} {% for message in messages %}
+      <div class="notification is-light register-message">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <p class="register-intro">
+        Create an account to enjoy a better shopping experience and keep track
+        of your orders.
+      </p>
+
+      <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+
+        <!-- Username -->
+        <div class="field">
+          <label class="label">Username</label>
+
+          <div class="control">
+            <input
+              class="input register-input"
+              type="text"
+              name="username"
+              placeholder="Choose a username"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label class="label">Email</label>
+
+          <div class="control">
+            <input
+              class="input register-input"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label class="label">Password</label>
+
+          <div class="control">
+            <input
+              class="input register-input"
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="field">
+          <label class="label">Confirm Password</label>
+
+          <div class="control">
+            <input
+              class="input register-input"
+              type="password"
+              name="confirm_password"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Register -->
+        <div class="field register-submit-field">
+          <button
+            type="submit"
+            class="button is-dark is-fullwidth register-submit-button"
+          >
+            Create Account
+          </button>
+        </div>
+      </form>
+
+      <div class="register-login">
+        <span>Already have an account?</span>
+
+        <a href="#" id="switchToLogin"> Login </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-card login-modal-card">
+    <header class="modal-card-head login-modal-head">
+      <div>
+        <p class="login-modal-label">WELCOME BACK</p>
+        <p class="modal-card-title">Login to Decor Shop</p>
+      </div>
+
+      <button class="delete login-modal-close" aria-label="close"></button>
+    </header>
+
+    <section class="modal-card-body login-modal-body">
+      {% if messages %} {% for message in messages %}
+      <div class="notification is-light login-message">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <p class="login-intro">
+        Sign in to continue shopping and manage your orders.
+      </p>
+
+      <form method="POST" action="{% url 'login' %}" id="loginForm">
+        {% csrf_token %}
+
+        <input type="hidden" name="next" id="loginNext" value="" />
+
+        <div class="field">
+          <label class="label">Username</label>
+
+          <div class="control">
+            <input
+              class="input login-input"
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+
+          <div class="control">
+            <input
+              class="input login-input"
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field login-submit-field">
+          <button
+            type="submit"
+            class="button is-dark is-fullwidth login-submit-button"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+
+      <div class="login-register">
+        <span>Don't have an account?</span>
+        <a href="#" id="switchToRegister">Create an account</a>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% comment %}
+<script>
+  // =========================
+  // REGISTER MODAL
+  // =========================
+
+  const registerModal = document.getElementById("registerModal");
+
+  const openRegisterModal = document.getElementById("openRegisterModal");
+
+  if (registerModal && openRegisterModal) {
+    const closeRegisterModal = () => {
+      registerModal.classList.remove("is-active");
+    };
+
+    openRegisterModal.addEventListener("click", (event) => {
+      event.preventDefault();
+      registerModal.classList.add("is-active");
+    });
+
+    const registerCloseButton = registerModal.querySelector(
+      ".register-modal-close",
+    );
+
+    const registerBackground = registerModal.querySelector(".modal-background");
+
+    registerCloseButton.addEventListener("click", closeRegisterModal);
+
+    registerBackground.addEventListener("click", closeRegisterModal);
+  }
+
+  // Login modal
+  const loginModal = document.getElementById("loginModal");
+  const openLoginModal = document.getElementById("openLoginModal");
+
+  if (loginModal && openLoginModal) {
+    const closeLoginModal = () => {
+      loginModal.classList.remove("is-active");
+    };
+
+    openLoginModal.addEventListener("click", (event) => {
+      event.preventDefault();
+      loginModal.classList.add("is-active");
+    });
+
+    const closeButton = loginModal.querySelector(".login-modal-close");
+    const background = loginModal.querySelector(".modal-background");
+
+    closeButton.addEventListener("click", closeLoginModal);
+    background.addEventListener("click", closeLoginModal);
+  }
+
+  // =========================
+  // REGISTER → LOGIN
+  // =========================
+
+  const switchToLogin = document.getElementById("switchToLogin");
+
+  if (switchToLogin && loginModal && registerModal) {
+    switchToLogin.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      registerModal.classList.remove("is-active");
+      loginModal.classList.add("is-active");
+    });
+  }
+
+  // =========================
+  // LOGIN → REGISTER
+  // =========================
+
+  const switchToRegister = document.getElementById("switchToRegister");
+
+  if (switchToRegister && loginModal && registerModal) {
+    switchToRegister.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      loginModal.classList.remove("is-active");
+      registerModal.classList.add("is-active");
+    });
+  }
+</script>
+{% endcomment %}
+
+<script>
+  // Auth Modals
+
+  const registerModal = document.getElementById("registerModal");
+  const loginModal = document.getElementById("loginModal");
+  const loginNext = document.getElementById("loginNext");
+
+  // Open Register Modal
+
+  document.querySelectorAll(".open-register-modal").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (loginModal) {
+        loginModal.classList.remove("is-active");
+      }
+
+      if (registerModal) {
+        registerModal.classList.add("is-active");
+      }
+    });
+  });
+
+  // Open Login Modal
+
+  document.querySelectorAll(".open-login-modal").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      // Remember where the user wanted to go
+      if (loginNext && button.dataset.loginNext) {
+        loginNext.value = button.dataset.loginNext;
+      }
+
+      if (registerModal) {
+        registerModal.classList.remove("is-active");
+      }
+
+      if (loginModal) {
+        loginModal.classList.add("is-active");
+      }
+    });
+  });
+
+  // Close Register Modal
+
+  if (registerModal) {
+    const registerCloseButton = registerModal.querySelector(
+      ".register-modal-close",
+    );
+
+    const registerBackground = registerModal.querySelector(".modal-background");
+
+    if (registerCloseButton) {
+      registerCloseButton.addEventListener("click", () => {
+        registerModal.classList.remove("is-active");
+      });
+    }
+
+    if (registerBackground) {
+      registerBackground.addEventListener("click", () => {
+        registerModal.classList.remove("is-active");
+      });
+    }
+  }
+
+  // Close Login Modal
+
+  if (loginModal) {
+    const loginCloseButton = loginModal.querySelector(".login-modal-close");
+
+    const loginBackground = loginModal.querySelector(".modal-background");
+
+    if (loginCloseButton) {
+      loginCloseButton.addEventListener("click", () => {
+        loginModal.classList.remove("is-active");
+      });
+    }
+
+    if (loginBackground) {
+      loginBackground.addEventListener("click", () => {
+        loginModal.classList.remove("is-active");
+      });
+    }
+  }
+
+  // Register to Login
+
+  const switchToLogin = document.getElementById("switchToLogin");
+
+  if (switchToLogin) {
+    switchToLogin.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (registerModal) {
+        registerModal.classList.remove("is-active");
+      }
+
+      if (loginModal) {
+        loginModal.classList.add("is-active");
+      }
+    });
+  }
+
+  // Login To Register
+
+  const switchToRegister = document.getElementById("switchToRegister");
+
+  if (switchToRegister) {
+    switchToRegister.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (loginModal) {
+        loginModal.classList.remove("is-active");
+      }
+
+      if (registerModal) {
+        registerModal.classList.add("is-active");
+      }
+    });
+  }
+
+
+  // Reopne Login Modal after failed Login
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == "error" %}
+        if (loginModal) {
+          loginModal.classList.add("is-active");
+        }
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</script>

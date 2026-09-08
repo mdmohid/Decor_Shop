@@ -51,10 +51,23 @@
             <a href="{% url 'products' %}">Categories</a>
           </li>
 
+          {% comment %}
           <li>
             <a href="{% url 'cart' %}">Shopping Cart</a>
           </li>
+          {% endcomment %} 
+          <li>
+            <a
+              href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}#{% endif %}"
+              class="{% if not user.is_authenticated %}open-login-modal{% endif %}"
+              data-login-next="{% url 'cart' %}"
+            >
+              Shopping Cart
+            </a>
+          </li>
         </ul>
+          
+        
       </div>
 
       <!-- Customer Service -->
@@ -103,8 +116,7 @@
             <a href="{% url 'cart' %}"> My Cart </a>
           </li>
 
-          {% else %}
-
+          {% else %} {% comment %}
           <li>
             <a href="{% url 'login' %}"> Login </a>
           </li>
@@ -112,6 +124,16 @@
           <li>
             <a href="{% url 'register' %}"> Create Account </a>
           </li>
+          {% endcomment %} {% comment %}
+          <a href="#" id="footerLogin">Login</a>
+          <span> · </span>
+
+          <a href="#" id="footerRegister">Register</a>
+          {% endcomment %}
+          <a href="#" class="open-login-modal">Login</a>
+          <span> · </span>
+
+          <a href="#" class="open-register-modal">Register</a>
 
           {% endif %}
         </ul>

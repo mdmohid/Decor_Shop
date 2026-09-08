@@ -112,6 +112,37 @@ def register(request):
     return render(request, 'register.html')
 
 #login
+# def login_view(request):
+
+#     if request.method == 'POST':
+
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         user = authenticate(
+#             request,
+#             username=username,
+#             password=password
+#         )
+
+#         # if user is not None:
+#         #     login(request, user)
+#         #     return redirect('profile')  #instead of home (i.e home)
+#         if user is not None:
+#             login(request, user)
+        
+#             next_url = request.GET.get('next')
+        
+#             if next_url:
+#                 return redirect(next_url)
+        
+#             return redirect('profile')
+
+#         messages.error(request, 'Invalid username or password.')
+#         return redirect('login')
+
+#     return render(request, 'login.html')
+
 def login_view(request):
 
     if request.method == 'POST':
@@ -125,23 +156,30 @@ def login_view(request):
             password=password
         )
 
-        # if user is not None:
-        #     login(request, user)
-        #     return redirect('profile')  #instead of home (i.e home)
         if user is not None:
             login(request, user)
-        
-            next_url = request.GET.get('next')
-        
+
+            next_url = request.POST.get('next')
+
             if next_url:
                 return redirect(next_url)
-        
+
             return redirect('profile')
 
+        # messages.error(request, 'Invalid username or password.')
+        # return redirect('home')
+        
+        #login fail in product detail page then
         messages.error(request, 'Invalid username or password.')
-        return redirect('login')
+        
+        next_url = request.POST.get('next')
+        
+        if next_url:
+            return redirect(next_url)
+        
+        return redirect('home')
 
-    return render(request, 'login.html')
+    return redirect('home')
 
 #logout
 def logout_view(request):

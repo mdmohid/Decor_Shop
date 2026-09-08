@@ -604,6 +604,42 @@ body {
 }
 
 
+/* categories dropdown */
+
+/* Categories dropdown – modern dark style */
+.navbar-item.has-dropdown.mobile-category .navbar-dropdown {
+  background-color: #1a1a1a;          /* deep black */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  margin-top: 0.25rem;
+}
+
+/* Individual items */
+.navbar-item.has-dropdown.mobile-category .navbar-dropdown .navbar-item {
+  color: #e5e5e5;                     /* soft white/gray text */
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  border-radius: 0;                   /* full-width hover */
+}
+
+/* Hover state (like the 'lightings' highlight) */
+.navbar-item.has-dropdown.mobile-category .navbar-dropdown .navbar-item:hover {
+  background-color: #f5f5f5;          /* light gray/white */
+  color: #333333;                     /* dark text on hover */
+}
+
+/* Optional: make the 'categories' link itself a bit softer when open */
+.navbar-item.has-dropdown.mobile-category.is-active .navbar-link,
+.navbar-item.has-dropdown.mobile-category:hover .navbar-link {
+  background-color: #f8f8f8;
+  color: #1a1a1a;
+}
+
 
 /* products page */
 
@@ -2781,6 +2817,246 @@ body {
 .contact-cta .hero-button {
     display: inline-flex;
 }
+
+
+
+/* Register Modal */
+
+.register-modal-card {
+    width: 460px;
+    max-width: calc(100% - 32px);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+}
+
+.register-modal-head {
+    background: #faf9f7;
+    border-bottom: 1px solid #eeeeee;
+    padding: 20px 26px;
+    align-items: flex-start;
+}
+
+.register-modal-label {
+    color: #999;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    margin-bottom: 4px;
+}
+
+.register-modal-head .modal-card-title {
+    color: #222;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.register-modal-close {
+    margin-left: auto;
+}
+
+.register-modal-body {
+    padding: 22px 26px;
+    background: #fff;
+}
+
+.register-intro {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.register-modal-body .field {
+    margin-bottom: 14px;
+}
+
+.register-modal-body .label {
+    color: #333;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.register-input {
+    height: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 12px;
+    padding-left: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-input:focus {
+    border-color: #777;
+    box-shadow: 0 0 0 1px #777;
+}
+
+.register-input::placeholder {
+    color: #aaa;
+}
+
+.register-submit-field {
+    margin-top: 18px;
+    margin-bottom: 0 !important;
+}
+
+.register-submit-button {
+    height: 42px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+}
+
+.register-submit-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.register-login {
+    border-top: 1px solid #eeeeee;
+    margin-top: 18px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+}
+
+.register-login a {
+    color: #222;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.register-login a:hover {
+    text-decoration: underline;
+}
+
+.register-message {
+    font-size: 11px;
+    margin-bottom: 14px;
+}
+
+
+
+/* Login Modal */
+
+.login-modal-card {
+    width: 460px;
+    max-width: calc(100% - 32px);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+}
+
+.login-modal-head {
+    background: #faf9f7;
+    border-bottom: 1px solid #eeeeee;
+    padding: 28px 30px;
+    align-items: flex-start;
+}
+
+.login-modal-label {
+    color: #999;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.login-modal-head .modal-card-title {
+    color: #222;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.login-modal-close {
+    margin-left: auto;
+}
+
+.login-modal-body {
+    padding: 30px;
+    background: #fff;
+}
+
+.login-intro {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.login-modal-body .label {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.login-input {
+    height: 46px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 13px;
+    padding-left: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-input:focus {
+    border-color: #777;
+    box-shadow: 0 0 0 1px #777;
+}
+
+.login-input::placeholder {
+    color: #aaa;
+}
+
+.login-submit-field {
+    margin-top: 26px;
+}
+
+.login-submit-button {
+    height: 46px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+}
+
+.login-submit-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.login-register {
+    border-top: 1px solid #eeeeee;
+    margin-top: 25px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+}
+
+.login-register a {
+    color: #222;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+.login-message {
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
 
 
 /* footer */

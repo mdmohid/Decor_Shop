@@ -55,7 +55,7 @@
           <li>
             <a href="{% url 'cart' %}">Shopping Cart</a>
           </li>
-          {% endcomment %} 
+          {% endcomment %}
           <li>
             <a
               href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}#{% endif %}"
@@ -66,8 +66,6 @@
             </a>
           </li>
         </ul>
-          
-        
       </div>
 
       <!-- Customer Service -->
@@ -171,7 +169,11 @@
   </div>
 </footer>
 
-<!--FAQ modal-->
+
+
+
+{% comment %} MODAL {% endcomment %}
+<!-- FAQ Modal -->
 
 <div id="faqModal" class="modal decor-modal">
   <div class="modal-background"></div>
@@ -218,7 +220,7 @@
   </div>
 </div>
 
-<!-- supportModal -->
+<!-- Help & Support Modal -->
 
 <div id="supportModal" class="modal decor-modal">
   <div class="modal-background"></div>
@@ -263,7 +265,7 @@
   </div>
 </div>
 
-<!-- privacyModal -->
+<!-- Privacy Policy Modal -->
 
 <div id="privacyModal" class="modal decor-modal">
   <div class="modal-background"></div>
@@ -300,9 +302,11 @@
   </div>
 </div>
 
-<!-- termsModal -->
+<!-- Terms & Conditions Modal -->
 
 <div id="termsModal" class="modal decor-modal">
+  <div class="modal-background"></div>
+
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Terms & Conditions</p>

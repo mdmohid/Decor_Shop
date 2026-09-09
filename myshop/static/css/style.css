@@ -3370,3 +3370,136 @@ border-top: 1px solid #eeeeee;
 
 }
 
+
+
+/* Customer Service modals */
+
+.decor-modal .modal-card {
+    width: 460px;
+    max-width: calc(100% - 32px);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+}
+
+
+/* modal header */
+
+.decor-modal .modal-card-head {
+    background: #faf9f7;
+    border-bottom: 1px solid #eeeeee;
+    padding: 20px 26px;
+    align-items: flex-start;
+}
+
+.decor-modal .modal-card-title {
+    color: #222;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* close/cross button */
+
+.decor-modal .modal-card-head .delete {
+    margin-left: auto;
+    margin-top: 1px;
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    max-width: 28px;
+
+    background: transparent;
+    border-radius: 5px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.decor-modal .modal-card-head .delete::before,
+.decor-modal .modal-card-head .delete::after {
+    background-color: #777;
+    transition: background-color 0.2s ease;
+}
+
+.decor-modal .modal-card-head .delete:hover {
+    background-color: #eeeeee;
+    transform: none;
+}
+
+.decor-modal .modal-card-head .delete:hover::before,
+.decor-modal .modal-card-head .delete:hover::after {
+    background-color: #222;
+}
+
+
+/* modal body */
+
+.decor-modal .modal-card-body {
+    padding: 22px 26px;
+    background: #fff;
+}
+
+.decor-modal .content {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.decor-modal .content h4 {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 18px;
+    margin-bottom: 7px;
+}
+
+.decor-modal .content h4:first-child {
+    margin-top: 0;
+}
+
+.decor-modal .content p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.decor-modal .content p:last-child {
+    margin-bottom: 0;
+}
+
+.decor-modal .content strong {
+    color: #333;
+    font-weight: 600;
+}
+
+
+/* modal footer */
+
+.decor-modal .modal-card-foot {
+    background: #faf9f7;
+    border-top: 1px solid #eeeeee;
+    padding: 15px 26px;
+    justify-content: flex-end;
+}
+
+.decor-modal .modal-card-foot .button {
+    height: 38px;
+    min-width: 72px;
+
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    transition: all 0.2s ease;
+}
+
+.decor-modal .modal-card-foot .button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}

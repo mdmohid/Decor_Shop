@@ -108,6 +108,17 @@
           <h2>How Can We Help?</h2>
 
           <div class="contact-divider"></div>
+          <!--for success message after completing the contact form and send -->
+          {% if message %}
+          <div class="notification is-success">
+            <button
+              class="delete"
+              type="button"
+              onclick="this.parentElement.remove()"
+            ></button>
+            {{ message }}
+          </div>
+          {% endif %}
 
           <form method="POST">
             {% csrf_token %}

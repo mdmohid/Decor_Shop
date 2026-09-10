@@ -29,7 +29,15 @@ def about(request):
   return render(request, 'about.html')
 
 #contact us
-def contact(request):
+# def contact(request):
+#     return render(request, 'contact.html')
+
+def contact(request):  #static for demo only
+    if request.method == 'POST':
+        return render(request, 'contact.html', {
+            'message': 'Thank you for contacting us. We will get back to you soon.'
+        })
+
     return render(request, 'contact.html')
 
 #products

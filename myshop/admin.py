@@ -1,4 +1,8 @@
 from django.contrib import admin
+#admin panel UI naming
+admin.site.site_header = "Decor Shop Admin"
+admin.site.site_title = "Decor Shop"
+admin.site.index_title = "Decor Shop Management"
 
 # Register your models here.
 

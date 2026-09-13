@@ -128,3 +128,16 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.product.name} × {self.quantity}"
+      
+      
+#hero-section model
+class HeroSlide(models.Model):
+    image = models.ImageField(upload_to="hero/")
+    is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"Hero Slide {self.order}"

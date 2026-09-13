@@ -1,8 +1,9 @@
- 
-{% extends 'base.html' %} {% block title %} Home | Decor Shop {% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %} Home | Decor Shop {% endblock %} 
+{% block content %}
 
 <!--Hero -->
 
+{% comment %}
 <section class="home-hero">
   <div class="container">
     <div class="home-hero-content">
@@ -13,12 +14,142 @@
         Feel Like Home.
       </h1>
 
-      {% comment %} <p class="hero-description">
+      {% comment %}
+      <p class="hero-description">
         Discover beautiful furniture and timeless decor designed to make every
         room feel special.
-      </p> {% endcomment %}
-
+      </p>
+      {% endcomment %} {% comment %}
       <a href="{% url 'products' %}" class="hero-button"> Shop Collection </a>
+    </div>
+  </div>
+</section>
+{% endcomment %} {% comment %}
+<section class="home-hero">
+  <div class="container home-hero-container">
+    <!-- LEFT: Rotating Images -->
+    <div class="home-hero-image">
+      {% if hero_slides %} {% for slide in hero_slides %}
+      <div class="hero-slide {% if forloop.first %}active{% endif %}">
+        <img src="{{ slide.image.url }}" alt="Furniture collection" />
+      </div>
+      {% endfor %} {% else %}
+
+      <!-- Fallback image if no slides are added -->
+      <div class="hero-slide active">
+        <img src="/static/images/decor1.jpg" alt="Furniture collection" />
+      </div>
+
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Fixed Content -->
+    <div class="home-hero-content">
+      <div class="hero-label">FURNITURE & HOME DECOR</div>
+
+      <h1>
+        Make Your Space<br />
+        Feel Like Home.
+      </h1>
+
+      <a href="{% url 'products' %}" class="hero-button"> SHOP COLLECTION </a>
+    </div>
+  </div>
+</section>
+{% endcomment %} {% comment %}
+<section class="home-hero">
+  <div class="container">
+    <div class="columns is-vcentered is-variable is-8">
+      <!-- LEFT: Rotating Images -->
+      <div class="column is-7-desktop is-12-tablet">
+        <div class="home-hero-image">
+          {% if hero_slides %} {% for slide in hero_slides %}
+          <div class="hero-slide {% if forloop.first %}active{% endif %}">
+            <img src="{{ slide.image.url }}" alt="Furniture collection" />
+          </div>
+          {% endfor %} {% else %}
+
+          <!-- Fallback image if no slides are added -->
+          <div class="hero-slide active">
+            <img src="/static/images/decor1.jpg" alt="Furniture collection" />
+          </div>
+
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- RIGHT: Fixed Content -->
+      <div class="column is-5-desktop is-12-tablet">
+        <div class="home-hero-content">
+          <div class="hero-label">FURNITURE & HOME DECOR</div>
+
+          <h1 class="title is-1-desktop is-2-tablet is-3-mobile">
+            Make Your Space<br />
+            Feel Like Home.
+          </h1>
+
+          <a href="{% url 'products' %}" class="hero-button">
+            SHOP COLLECTION
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endcomment %}
+
+<section class="home-hero">
+  <div class="container home-hero-container">
+    <div class="columns is-vcentered">
+      <!-- LEFT: Rotating Images -->
+      <div class="column is-7-desktop is-12-tablet">
+        <div class="home-hero-image">
+          {% if hero_slides %} {% for slide in hero_slides %}
+          <div class="hero-slide {% if forloop.first %}active{% endif %}">
+            <img src="{{ slide.image.url }}" alt="Furniture collection" />
+          </div>
+          {% endfor %} {% else %}
+
+          <div class="hero-slide active">
+            <img src="/static/images/decor1.jpg" alt="Furniture collection" />
+          </div>
+
+          {% endif %} {% comment %}
+          <div class="hero-dots">
+            {% for slide in hero_slides %}
+            <span
+              class="hero-dot {% if forloop.first %}active{% endif %}"
+            ></span>
+            {% endfor %}
+          </div>
+          {% endcomment %}
+          <div class="hero-dots">
+            {% if hero_slides %} {% for slide in hero_slides %}
+            <span
+              class="hero-dot {% if forloop.first %}active{% endif %}"
+            ></span>
+            {% endfor %} {% else %}
+            <span class="hero-dot active"></span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Fixed Content -->
+      <div class="column is-5-desktop is-12-tablet">
+        <div class="home-hero-content">
+          <div class="hero-label">FURNITURE & HOME DECOR</div>
+
+          <h1>
+            Make Your Space<br />
+            Feel Like Home.
+          </h1>
+
+          <a href="{% url 'products' %}" class="hero-button">
+            SHOP COLLECTION
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -151,5 +282,40 @@
     <a href="{% url 'products' %}" class="hero-button"> Explore Products </a>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-dot");
+
+    console.log("Slides:", slides.length);
+
+    if (slides.length <= 1) {
+      return;
+    }
+
+    let currentSlide = 0;
+
+    setInterval(function () {
+      slides[currentSlide].classList.remove("active");
+
+      if (dots.length > 0) {
+        dots[currentSlide].classList.remove("active");
+      }
+
+      currentSlide++;
+
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
+
+      slides[currentSlide].classList.add("active");
+
+      if (dots.length > 0) {
+        dots[currentSlide].classList.add("active");
+      }
+    }, 2000);
+  });
+</script>
 
 {% endblock %}

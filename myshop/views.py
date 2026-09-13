@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from uuid import uuid4
-from .models import  Cart, CartItem, Order, OrderItem
+from .models import  Cart, CartItem, Order, OrderItem, HeroSlide
 
 # Create your views here.
 #home
@@ -14,12 +14,14 @@ from .models import  Cart, CartItem, Order, OrderItem
 #   return render(request,'index.html')
 
 def home(request):
+    hero_slides = HeroSlide.objects.filter(is_active=True)
     categories = Category.objects.all()
     featured_products = Product.objects.filter(
         is_available=True
     ).order_by('-created_at')[:6]
 
     return render(request, 'index.html', {
+        'hero_slides': hero_slides,
         'categories': categories,
         'featured_products': featured_products,
     })

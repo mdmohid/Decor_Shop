@@ -167,8 +167,17 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #media directory for image uploads
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Include your existing images in Django's static-file collection
+STATICFILES_DIRS = [
+    BASE_DIR / 'media',
+]
+
+# ImageField URLs will use the static-file URL prefix
+MEDIA_URL = STATIC_URL
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

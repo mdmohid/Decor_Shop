@@ -519,6 +519,143 @@ body {
 }
 
 
+
+
+/* =========================
+   RESPONSIVE HOME HERO
+========================= */
+
+/* Tablet and smaller screens */
+@media screen and (max-width: 1023px) {
+    .home-hero {
+        min-height: auto;
+        padding: 35px 0 45px;
+    }
+
+    .home-hero-image {
+        height: 360px;
+    }
+
+    .home-hero-content {
+        max-width: 100%;
+        padding: 30px 24px 10px;
+        text-align: center;
+    }
+
+    .home-hero h1 {
+        font-size: clamp(34px, 5vw, 48px);
+        line-height: 1.12;
+        letter-spacing: -1.5px;
+        white-space: normal;
+    }
+
+    .hero-label {
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+    }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 768px) {
+    .home-hero {
+        min-height: auto;
+        padding: 20px 0 35px;
+    }
+
+    .home-hero-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .home-hero-image {
+        height: clamp(180px, 58vw, 280px);
+        border-radius: 8px;
+    }
+
+    .home-hero-content {
+        padding: 26px 5px 0;
+        text-align: center;
+    }
+
+    .home-hero h1 {
+        font-size: clamp(30px, 7vw, 42px);
+        line-height: 1.15;
+        letter-spacing: -1px;
+        white-space: normal;
+        margin-bottom: 24px;
+    }
+
+    .hero-label {
+        gap: 8px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        margin-bottom: 16px;
+    }
+
+    .hero-label::before {
+        width: 20px;
+    }
+
+    .hero-button {
+        min-width: 150px;
+        min-height: 44px;
+        padding: 12px 18px;
+    }
+
+    .hero-dots {
+        bottom: 12px;
+        gap: 7px;
+    }
+
+    .hero-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .hero-dot.active {
+        width: 18px;
+    }
+
+    /* Make the fade softer on mobile */
+    .home-hero-image::after {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(247, 246, 243, 0.35) 0%,
+                transparent 15%,
+                transparent 85%,
+                rgba(247, 246, 243, 0.35) 100%
+            ),
+            linear-gradient(
+                180deg,
+                rgba(247, 246, 243, 0.2) 0%,
+                transparent 15%,
+                transparent 85%,
+                rgba(247, 246, 243, 0.2) 100%
+            );
+    }
+}
+
+/* Very small phones */
+@media screen and (max-width: 380px) {
+    .home-hero-image {
+        height: 180px;
+    }
+
+    .home-hero h1 {
+        font-size: 29px;
+    }
+
+    .hero-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+
 /* category cards */
 
 .category-grid {

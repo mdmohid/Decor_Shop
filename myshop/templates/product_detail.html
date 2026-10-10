@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% block title %}{{ product.name }} | Decor Shop 
-{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}{{ product.name }}
+| Decor Shop {% endblock %} {% block content %}
 
 <section class="product-detail-section">
   <div class="container">
@@ -14,7 +14,10 @@
         <div class="product-detail-image">
           {% if product.image %}
 
-          <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+          <img
+            src="{% static product.image.name %}"
+            alt="{{ product.name }}"
+          />
 
           {% else %}
 
@@ -81,8 +84,8 @@
             Out of Stock
           </button>
 
-          {% endif %} {% endcomment %} {% if product.stock > 0 %} 
-          {% if user.is_authenticated %}
+          {% endif %} {% endcomment %} {% if product.stock > 0 %} {% if
+          user.is_authenticated %}
 
           <form
             method="POST"
@@ -106,8 +109,7 @@
             Add to Cart
           </button>
 
-          {% endif %} 
-          {% else %}
+          {% endif %} {% else %}
 
           <button class="button product-add-button" disabled>
             Out of Stock

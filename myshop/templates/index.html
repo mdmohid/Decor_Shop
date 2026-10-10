@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% block title %} Home | Decor Shop {% endblock %} 
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %} Home | Decor Shop
+{% endblock %} {% block content %}
 
 <!--Hero -->
 
@@ -106,7 +106,10 @@
         <div class="home-hero-image">
           {% if hero_slides %} {% for slide in hero_slides %}
           <div class="hero-slide {% if forloop.first %}active{% endif %}">
-            <img src="{{ slide.image.url }}" alt="Furniture collection" />
+            <img
+              src="{% static slide.image.name %}"
+              alt="Furniture collection"
+            />
           </div>
           {% endfor %} {% else %}
 
@@ -172,7 +175,7 @@
         class="category-card"
       >
         {% if category.image %}
-        <img src="{{ category.image.url }}" alt="{{ category.name }}" />
+        <img src="{% static category.image.name %}" alt="{{ category.name }}" />
         {% else %}
         <div class="category-placeholder">{{ category.name|first }}</div>
         {% endif %}
@@ -209,7 +212,10 @@
         <a href="{% url 'product_detail' product.slug %}">
           <div class="product-image">
             {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+            <img
+              src="{% static product.image.name %}"
+              alt="{{ product.name }}"
+            />
             {% else %}
             <div class="product-placeholder">No Image</div>
             {% endif %}

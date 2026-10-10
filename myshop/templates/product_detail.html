@@ -1,36 +1,29 @@
-{% extends 'base.html' %} {% load static %} {% block title %}{{ product.name }}
+{% extends 'base.html' %} {% load static %} {% block title %} {{ product.name }}
 | Decor Shop {% endblock %} {% block content %}
 
 <section class="product-detail-section">
   <div class="container">
-    <!-- back link -->
+    <!-- Back link -->
     <div class="product-back">
-      <a href="{% url 'products' %}"> ← Back to Products </a>
+      <a href="{% url 'products' %}">← Back to Products</a>
     </div>
 
     <div class="columns is-variable is-8">
-      <!-- product image -->
+      <!-- Product image -->
       <div class="column is-6">
         <div class="product-detail-image">
           {% if product.image %}
-
-          <img
-            src="{% static product.image.name %}"
-            alt="{{ product.name }}"
-          />
-
+          <img src="{% static product.image.name %}" alt="{{ product.name }}" />
           {% else %}
-
           <div class="product-detail-placeholder">No Image Available</div>
-
           {% endif %}
         </div>
       </div>
 
-      <!-- product information -->
+      <!-- Product information -->
       <div class="column is-6">
         <div class="product-detail-info">
-          <!-- category -->
+          <!-- Category -->
           <p class="product-detail-category">{{ product.category.name }}</p>
 
           <!-- Name -->
@@ -44,63 +37,32 @@
           <!-- Description -->
           <div class="product-detail-description">
             <h3>Description</h3>
-
             <p>{{ product.description }}</p>
           </div>
 
           <!-- Stock -->
           <div class="product-detail-stock">
             {% if product.stock > 0 %}
-
             <span class="stock-status available"> ● In Stock </span>
-
-            <span> {{ product.stock }} available </span>
-
+            <span>{{ product.stock }} available</span>
             {% else %}
-
             <span class="stock-status unavailable"> ● Out of Stock </span>
-
             {% endif %}
           </div>
 
-          <!-- add to cart -->
-          {% comment %} {% if product.stock > 0 %}
-
+          <!-- Add to cart -->
+          {% if product.stock > 0 %} {% if user.is_authenticated %}
           <form
             method="POST"
             action="{% url 'add_to_cart' product.slug %}"
             class="product-cart-form"
           >
             {% csrf_token %}
-
             <button type="submit" class="button product-add-button">
               Add to Cart
             </button>
           </form>
-
           {% else %}
-
-          <button class="button product-add-button" disabled>
-            Out of Stock
-          </button>
-
-          {% endif %} {% endcomment %} {% if product.stock > 0 %} {% if
-          user.is_authenticated %}
-
-          <form
-            method="POST"
-            action="{% url 'add_to_cart' product.slug %}"
-            class="product-cart-form"
-          >
-            {% csrf_token %}
-
-            <button type="submit" class="button product-add-button">
-              Add to Cart
-            </button>
-          </form>
-
-          {% else %}
-
           <button
             type="button"
             class="button product-add-button open-login-modal"
@@ -108,16 +70,13 @@
           >
             Add to Cart
           </button>
-
           {% endif %} {% else %}
-
-          <button class="button product-add-button" disabled>
+          <button type="button" class="button product-add-button" disabled>
             Out of Stock
           </button>
-
           {% endif %}
 
-          <!-- extra information -->
+          <!-- Extra information -->
           <div class="product-detail-note">
             <div>
               <strong>Quality Furniture</strong>

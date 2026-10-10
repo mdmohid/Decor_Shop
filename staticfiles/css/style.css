@@ -219,64 +219,271 @@ body {
 
 /* home - hero */
 
+/* home - hero */
+
+
+/* =========================
+   HOME HERO
+========================= */
+
 .home-hero {
-    min-height: 620px;
+    position: relative;
+    min-height: 720px;
+
     display: flex;
     align-items: center;
+
+    overflow: hidden;
+
+    background: #f7f6f3;
+}
+
+.home-hero-container {
+    width: 100%;
+}
+
+
+/* =========================
+   LEFT IMAGE
+========================= */
+
+.home-hero-image {
+    position: relative;
+
+    width: 100%;
+    height: 620px;
+
+    overflow: hidden;
+}
+
+
+/* Fade image on ALL sides */
+
+.home-hero-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 3;
+    pointer-events: none;
+
     background:
+
+        /* LEFT + RIGHT */
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.65),
-            rgba(0, 0, 0, 0.15)
+            #f7f6f3 0%,
+            transparent 7%,
+            transparent 70%,
+            rgba(247, 246, 243, 0.35) 88%,
+            #f7f6f3 100%
         ),
-        url('/static/images/home-hero.jpg') center/cover no-repeat;
+
+        /* TOP + BOTTOM */
+        linear-gradient(
+            180deg,
+            #f7f6f3 0%,
+            transparent 10%,
+            transparent 90%,
+            #f7f6f3 100%
+        );
 }
+
+
+/* =========================
+   ROTATING SLIDES
+========================= */
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    border: none;
+}
+
+
+/* =========================
+   RIGHT CONTENT
+========================= */
 
 .home-hero-content {
-    max-width: 650px;
-    padding: 80px 20px;
-    color: #ffffff;
+    width: 100%;
+    max-width: 760px;
+
+    padding: 80px 45px 80px 70px;
+
+    color: #181818;
+
+    text-align: right;
 }
+
+
+/* =========================
+   LABEL
+========================= */
 
 .hero-label {
-    font-size: 12px;
-    letter-spacing: 4px;
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 26px;
+
+    color: #555555;
+
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 20px;
+
+    letter-spacing: 3.5px;
+
+    text-transform: uppercase;
 }
+
+.hero-label::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 32px;
+    height: 1px;
+
+    background: #555555;
+}
+
+
+/* =========================
+   HEADING
+========================= */
 
 .home-hero h1 {
-    font-size: clamp(42px, 6vw, 72px);
+    margin: 0 0 35px;
+
+    color: #181818;
+
+    font-size: 58px;
+    font-weight: 600;
+
     line-height: 1.05;
-    font-weight: 700;
-    letter-spacing: -2px;
-    margin-bottom: 25px;
+    letter-spacing: -2.5px;
+    white-space: nowrap;
 }
 
-.hero-description {
-    max-width: 520px;
-    font-size: 17px;
-    line-height: 1.7;
-    color: #eeeeee;
-    margin-bottom: 32px;
-}
+
+/* =========================
+   BUTTON
+========================= */
 
 .hero-button {
-    display: inline-block;
-    background: #ffffff;
-    color: #181818;
-    padding: 14px 28px;
-    border-radius: 5px;
-    font-size: 14px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 165px;
+    min-height: 48px;
+
+    padding: 14px 25px;
+
+    background: #181818;
+    color: #ffffff;
+
+    border: 1px solid #181818;
+    border-radius: 0;
+
+    font-size: 11px;
     font-weight: 600;
-    transition: all 0.25s ease;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+    text-decoration: none;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.hero-button::after {
+    content: "→";
+
+    margin-left: 14px;
+
+    font-size: 15px;
+
+    transition: transform 0.25s ease;
 }
 
 .hero-button:hover {
-    background: #181818;
-    color: #ffffff;
+    background: transparent;
+    color: #181818;
+
     transform: translateY(-2px);
 }
+
+.hero-button:hover::after {
+    transform: translateX(5px);
+}
+
+.hero-button:hover::after {
+    transform: translateX(5px);
+}
+
+.hero-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    display: flex;
+    gap: 8px;
+}
+
+.hero-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    transition: all 0.3s ease;
+}
+
+.hero-dot.active {
+    width: 22px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
 
 
 /* home sectors */

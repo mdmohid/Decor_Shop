@@ -162,22 +162,48 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #media directory for image uploads
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Include your existing images in Django's static-file collection
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'media',
+# ]
+
+# # ImageField URLs will use the static-file URL prefix
+# MEDIA_URL = STATIC_URL
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
+# Static files
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
+
+# Collect existing images from the media folder as static assets
 STATICFILES_DIRS = [
     BASE_DIR / 'media',
 ]
 
-# ImageField URLs will use the static-file URL prefix
-MEDIA_URL = STATIC_URL
+# Keep media URLs separate from static URLs
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

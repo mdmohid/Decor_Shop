@@ -1,0 +1,59 @@
+/* =========================
+   DECOR SHOP ADMIN
+   Safe customization only
+   ========================= */
+
+:root {
+    --primary: #181818;
+    --soft-bg: #f7f6f3;
+    --border: #e5e5e5;
+}
+
+
+/* Header */
+#header {
+    background: var(--primary);
+}
+
+#header a {
+    color: #ffffff !important;
+}
+
+
+/* Admin branding */
+#site-name {
+    font-weight: 600;
+}
+
+#site-name a {
+    color: #ffffff !important;
+}
+
+
+/* Dashboard heading */
+#content h1 {
+    font-weight: 600;
+}
+
+
+/* Module headings only */
+.module h2,
+.module caption {
+    background: var(--soft-bg);
+    color: var(--primary);
+}
+
+
+/* Borders */
+.module,
+#changelist {
+    border-color: var(--border);
+}
+
+
+/* Buttons - don't override Django's sizing */
+.button,
+input[type="submit"],
+.submit-row input {
+    border-radius: 5px;
+}
